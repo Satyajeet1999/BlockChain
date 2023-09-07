@@ -1,0 +1,46 @@
+Simple Wallet
+
+Create a simple wallet.
+we have a basic verifiable Blockchain.
+ But currently our chain only stores rather useless messages.
+ we are going to replace this data with transactions ( our block will be able to hold multiple transactions ), 
+ allowing us to create a very simple crypto-currency.
+ We will call our new coin : “NoobCoin”.
+ 
+ Dependencies:
+  You will need to import bounceycastle and GSON.
+  
+  1.Preparing a Wallet
+In crypto-currencies, coin ownership is transfered on the Blockchain as transactions, 
+participants have an address which funds can be sent to and from. 
+In their basic form wallets can just store these addresses, 
+most wallets however, are also software able to make new transactions on the Blockchain.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+  So let’s create a Wallet Class to hold our public key and private keys:
+  
+What are the public and private keys for ?
+
+For our ‘noobcoin’ the public key will act as our address. It’s OK to share this public key with others to receive payment. 
+Our private key is used to sign our transactions, so that nobody can spend our noobcoins other than the owner of the private key. 
+Users will have to keep their private key Secret ! We also send our public key along with the transaction and 
+it can be used to verify that our signature is valid and data has not been tampered with.
+
+We generate our private and public keys in a KeyPair. We will use Elliptic-curve cryptography to Generate our KeyPairs. 
+Let’s append a generateKeyPair() method to our Wallet class and call it in the constructor:
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Now that we have the outlines of our wallet class let’s have a look at transactions.
+
+2. Transactions & Signatures
+Each transaction will carry a certain amount of data:
+
+The public key(address) of the sender of funds.
+The public key(address) of the receiver of funds.
+The value/amount of funds to be transferred.
+Inputs, which are references to previous transactions that prove the sender has funds to send.
+Outputs, which shows the amount relevant addresses received in the transaction. ( These outputs are referenced as inputs in new transactions )
+A cryptographic signature, that proves the owner of the address is the one sending this transaction and that the data hasn’t been changed. ( for example: preventing a third party from changing the amount sent )
+Let’s create this new Transaction class:
