@@ -71,6 +71,51 @@ Lets create an isChainValid() Boolean method in the NoobChain class,
  that will loop through all blocks in the chain and compare the hashes.
   This method will need to check the hash variable is actually equal to the calculated hash,
    and the previous block’s hash is equal to the previousHash variable.
+   
+   Any change to the blockchain’s blocks will cause this method to return false.
+
+On the bitcoin network nodes share their blockchains and the longest valid chain is accepted by the network.
+ What’s to stop someone tampering with data in an old block then creating a whole new longer blockchain and presenting that to the network ? Proof of work.
+ The hashcash proof of work system means it takes considerable time and computational power to create new blocks. 
+ Hence the attacker would need more computational power than the rest of the peers combined.
+ 
+ 
+ ******************************************************
+ 
+ Lets start mining blocks !!!
+We will require miners to do proof-of-work by trying different variable values in the block until its hash starts with a certain number of 0’s.
+
+Lets add an int called nonce to be included in our calculateHash() method, and the much needed mineBlock() method :
+
+The mineBlock() method takes in an int called difficulty, this is the number of 0’s they must solve for. 
+Low difficulty like 1 or 2 can be solved nearly instantly on most computers, i’d suggest something around 4–6 for testing. 
+At the time of writing Litecoin’s difficulty is around 442,592.
+
+Lets add the difficulty as a static variable to the NoobChain class :
+public static int difficulty = 5;
+We should update the NoobChain class to trigger the mineBlock() method for each new block. 
+The isChainValid() Boolean should also check if each block has a solved ( by mining ) hash.
+
+*************************************************************
+
+Mining each block took some time! ( around 3 seconds ) You should mess around with the difficulty value to see how that effects the time it takes to mine each block ;)
+
+If someone were to tamper 😒 with the data in your blockchain system:
+
+Their blockchain would be invalid.
+They would not be able to create a longer blockchain.
+Honest blockchains in your network will have a time advantage on the longest chain.
+A tampered blockchain will not be able to catch up with a longer & valid chain. *
+
+*unless they have vastly more computation speed than all other nodes in your network combined. A future quantum computer or something.
+
+You’re all done with your basic blockchain!
+
+Your blockchain:
+> Is made up of blocks that store data.
+> Has a digital signature that chains your blocks together.
+> Requires proof of work mining to validate new blocks.
+> Can be check to see if data in it is valid and unchanged.
 
 
   
