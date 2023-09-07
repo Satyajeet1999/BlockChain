@@ -14,7 +14,7 @@ public class StringUtil {
 			 * 
 			 * This MessageDigest class provides applications the functionality of a message
 			 * digest algorithm, such as SHA-1 or SHA-256.Message digests are secure one-way
-			 * hash functions that take arbitrary-size ddata and output a fixed-length hash
+			 * hash functions that take arbitrary-size data and output a fixed-length hash
 			 * value.
 			 */
 

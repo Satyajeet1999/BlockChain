@@ -66,6 +66,12 @@ Import it with import com.google.gson.*;
 
 ***********************************************
 
+Now we need a way to check the integrity of our blockchain.
+Lets create an isChainValid() Boolean method in the NoobChain class,
+ that will loop through all blocks in the chain and compare the hashes.
+  This method will need to check the hash variable is actually equal to the calculated hash,
+   and the previous block’s hash is equal to the previousHash variable.
+
 
   
   
