@@ -1,5 +1,6 @@
 package noobChain;
 
+import java.security.Security;
 import java.util.ArrayList;
 import com.google.gson.GsonBuilder;
 
@@ -7,6 +8,8 @@ public class noobChain {
 
 	public static ArrayList<Block> blockChain = new ArrayList<Block>();
 	public static int difficulty = 5;
+	public static Wallet walletA;
+	public static Wallet walletB;
 	
 
 	public static void main(String[] args) {
@@ -28,6 +31,7 @@ public class noobChain {
 		 */
 
 		// *********************************************************************
+		
 
 		// add our blocks to the blockchain ArrayList:
 
@@ -48,6 +52,12 @@ public class noobChain {
 		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockChain);
 		System.out.println("\nThe Block Chain :");
 		System.out.println(blockchainJson);
+		
+		
+		//*************************************************************************************
+		
+		//Setup Bouncy castle as a Security Provider
+		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
 	}
 

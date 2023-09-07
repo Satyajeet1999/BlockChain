@@ -43,4 +43,29 @@ The value/amount of funds to be transferred.
 Inputs, which are references to previous transactions that prove the sender has funds to send.
 Outputs, which shows the amount relevant addresses received in the transaction. ( These outputs are referenced as inputs in new transactions )
 A cryptographic signature, that proves the owner of the address is the one sending this transaction and that the data hasn’t been changed. ( for example: preventing a third party from changing the amount sent )
+
 Let’s create this new Transaction class:
+
+We should also create empty TransactionInput and TransactionOutput classes, don’t worry we can fill them in later.
+Our transaction class will also contain relevant methods for generating/verifying the signature and verifying the transaction.
+But wait…
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+What is the purpose of signatures and how do they work ?
+Signatures perform two very important tasks on our blockchain: 
+Firstly, they allow only the owner to spend their coins, secondly, they prevent others from tampering with their submitted transaction before a new block is mined (at the point of entry).
+The private key is used to sign the data and the public key can be used to verify its integrity.
+For example: Bob wants to send 2 NoobCoins to Sally, so their wallet software generates this transaction and submits it to miners to include in the next block. A miner attempts to change the recipient of the 2 coins to John. However, luckily, Bob had signed the transaction data with his private key, allowing anybody to verify if the transaction data has been changed using Bob’s public key (as no other persons public key will be able to verify the transaction).
+We can see (from the previous code block,) that our signature will be a bunch of bytes, so let’s create a method to generate them. 
+First thing we will need are a few helper functions in StringUtil class :
+
+
+
+Now let’s utilize these signature methods in our Transaction class, by appending a generateSignature() and verifiySignature() methods:
+
+Signatures will be verified by miners as a new transaction are added to a block.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Testing the Wallets and Signatures:
+Now we are almost halfway done Let’s test a few things are working. In the NoobChain class let’s add some new variables and replace the content of our main method :
+

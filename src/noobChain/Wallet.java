@@ -7,8 +7,6 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.spec.ECGenParameterSpec;
 
-import javax.management.RuntimeErrorException;
-
 public class Wallet {
 	
 	public PrivateKey privateKey;
